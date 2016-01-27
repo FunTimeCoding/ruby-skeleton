@@ -39,7 +39,6 @@ fi
 
 cp ./*.md "${TARGET_PROJECT}"
 cp ./*.sh "${TARGET_PROJECT}"
-cp sonar-project.properties "${TARGET_PROJECT}"
 cp ruby_skeleton.gemspec "${TARGET_PROJECT}"
 cp .gitignore "${TARGET_PROJECT}"
 cp .rubocop.yml "${TARGET_PROJECT}"
