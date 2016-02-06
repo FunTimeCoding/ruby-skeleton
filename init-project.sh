@@ -2,7 +2,7 @@
 # This tool is to initialize the project after cloning.
 # The goal is to make easy to create and test new projects.
 
-CAMEL=$(echo "${1}" | grep -E '^([A-Z][a-z0-9]+){2,}$') || CAMEL=""
+CAMEL=$(echo "${1}" | grep -E '^([A-Z]+[a-z0-9]*){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
     echo "Usage: ${0} UpperCamelCaseName"
@@ -25,7 +25,7 @@ UNDERSCORE=$(echo "${DASH}" | sed -E 's/-/_/g')
 INITIALS=$(echo "${CAMEL}" | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
 rm init-project.sh sync-project.sh
 # shellcheck disable=SC2016
-${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/RubySkeleton/${2}/g" -e "s/ruby-skeleton/${3}/g" -e "s/ruby_skeleton/${4}/g" -e "s/bin\/rs/bin\/${5}/g" ${6}' '_' "${SED}" "${CAMEL}" "${DASH}" "${UNDERSCORE}" "${INITIALS}" '{}' \;
+${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/RubySkeleton/${2}/g" -e "s/ruby-skeleton/${3}/g" -e "s/ruby_skeleton/${4}/g" -e "s/bin\/rs/bin\/${5}/g" "${6}"' '_' "${SED}" "${CAMEL}" "${DASH}" "${UNDERSCORE}" "${INITIALS}" '{}' \;
 git mv lib/ruby_skeleton lib/"${UNDERSCORE}"
 git mv spec/ruby_skeleton_spec.rb spec/"${UNDERSCORE}"_spec.rb
 git mv lib/ruby_skeleton.rb lib/"${UNDERSCORE}".rb
