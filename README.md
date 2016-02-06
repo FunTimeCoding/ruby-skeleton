@@ -1,17 +1,21 @@
 # RubySkeleton
 
-## Operation
+## Usage
 
-Run scripts.
+This section explains how to use this project.
+
+Run the main entry point program.
 
 ```sh
 ruby -I lib bin/rs
 ```
 
 
-## Testing
+## Development
 
-Install test tools.
+This section explains how to use scripts that are intended to ease the development of this project.
+
+Install development tools.
 
 ```sh
 gem install rspec simplecov simplecov-rcov rspec_junit_formatter metric_fu rubocop roodi flog
