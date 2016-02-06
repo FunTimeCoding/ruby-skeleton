@@ -41,16 +41,12 @@ cp ./*.md "${TARGET_PROJECT}"
 cp ./*.sh "${TARGET_PROJECT}"
 cp .gitignore "${TARGET_PROJECT}"
 cp .rubocop.yml "${TARGET_PROJECT}"
-rm "${TARGET_PROJECT}/init-project.sh"
-rm "${TARGET_PROJECT}/sync-project.sh"
 DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
 UNDERSCORE=$(echo "${DASH}" | ${SED} -E 's/-/_/g')
-cp ruby_skeleton.gemspec "${TARGET_PROJECT}/${UNDERSCORE}.gemspec"
-echo "DASH: ${DASH}"
-echo "INITIALS: ${INITIALS}"
-echo "UNDERSCORE: ${UNDERSCORE}"
+cp ruby_skeleton.gemspec "${TARGET_PROJECT}/${UNDERSCORE}".gemspec
 cd "${TARGET_PROJECT}" || exit 1
+rm init-project.sh sync-project.sh
 # shellcheck disable=SC2016
 ${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/RubySkeleton/${2}/g" -e "s/ruby-skeleton/${3}/g" -e "s/ruby_skeleton/${4}/g" -e "s/bin\/rs/bin\/${5}/g" ${6}' '_' "${SED}" "${CAMEL}" "${DASH}" "${UNDERSCORE}" "${INITIALS}" '{}' \;
 echo "Done. Files were copied to ${TARGET_PROJECT} and modified. Review those changes."
