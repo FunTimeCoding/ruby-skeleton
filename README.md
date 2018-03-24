@@ -24,9 +24,9 @@ gem install rspec simplecov simplecov-rcov rspec_junit_formatter metric_fu ruboc
 Run style checks, metrics and tests.
 
 ```sh
-./run-style-check.sh
-./run-metrics.sh
-./run-tests.sh
+script/check.sh
+script/measure.sh
+script/test.sh
 ```
 
 Build the project like Jenkins.
