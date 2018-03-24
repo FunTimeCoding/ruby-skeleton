@@ -1,7 +1,5 @@
-# encoding: UTF-8
-
 class Calculator
-  def add(a, b)
-    a + b
+  def add(augend, addend)
+    augend + addend
   end
 end

@@ -18,9 +18,11 @@ fi
 MARKDOWN_FILES=$(find . -name '*.md')
 BLACKLIST=""
 DICTIONARY=en_US
+mkdir -p tmp
+cat documentation/dictionary/*.dic > tmp/combined.dic
 
 for FILE in ${MARKDOWN_FILES}; do
-    WORDS=$(hunspell -d "${DICTIONARY}" -p documentation/dictionary/python-skeleton.dic -l "${FILE}" | sort | uniq)
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
 
     if [ ! "${WORDS}" = "" ]; then
         echo "${FILE}"
@@ -47,7 +49,7 @@ done
 TEX_FILES=$(find . -name '*.tex')
 
 for FILE in ${TEX_FILES}; do
-    WORDS=$(hunspell -d "${DICTIONARY}" -p documentation/dictionary/python-skeleton.dic -l -t "${FILE}")
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l -t "${FILE}")
 
     if [ ! "${WORDS}" = "" ]; then
         echo "${FILE}"
@@ -85,8 +87,7 @@ else
     FIND='find'
 fi
 
-INCLUDE_FILTER='^.*(\/bin\/[a-z]*|\.py)$'
-EXCLUDE_FILTER='^.*\/(build|tmp|\.git|\.vagrant|\.idea|\.venv|\.tox)\/.*$'
+EXCLUDE_FILTER='^.*\/(build|tmp|\.git|\.vagrant|\.idea)\/.*$'
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     FILES=$(${FIND} . -name '*.sh' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
@@ -106,7 +107,7 @@ else
     fi
 fi
 
-EXCLUDE_FILTER_WITH_INIT='^.*\/((build|tmp|\.git|\.vagrant|\.idea|\.venv|\.tox)\/.*|__init__\.py)$'
+EXCLUDE_FILTER_WITH_INIT='^.*\/((build|tmp|\.git|\.vagrant|\.idea)\/.*|__init__\.py)$'
 # shellcheck disable=SC2016
 EMPTY_FILES=$(${FIND} . -empty -regextype posix-extended ! -regex "${EXCLUDE_FILTER_WITH_INIT}")
 
@@ -184,6 +185,7 @@ fi
 
 echo
 RETURN_CODE=0
+# shellcheck disable=SC2016
 FLOG_CONCERNS=$(${FIND} . -name '*.rb' -exec sh -c 'echo ${1}; flog ${1}' '_' '{}' \;) || RETURN_CODE=$?
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
