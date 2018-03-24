@@ -39,6 +39,7 @@ mkdir -p "${TARGET}/script"
 cp -R script/* "${TARGET}/script"
 cp .gitignore "${TARGET}"
 cp .rubocop.yml "${TARGET}"
+cp Gemfile "${TARGET}"
 cp Vagrantfile "${TARGET}"
 DASH=$(echo "${NAME}" | ${SED} --regexp-extended 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 UNDERSCORE=$(echo "${DASH}" | ${SED} --regexp-extended 's/-/_/g')

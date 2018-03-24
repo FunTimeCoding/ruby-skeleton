@@ -2,3 +2,6 @@ Debian
 Reitzel
 virtualbox
 shellcheck
+rubocop
+roodi
+simplecov
