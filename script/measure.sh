@@ -39,4 +39,5 @@ if [ "${1}" = --ci-mode ]; then
     rm -rf .sonar
 fi
 
-metric_fu
+# TODO: Resolve Gemfile dependency problem.
+#metric_fu
