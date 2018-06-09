@@ -1,10 +1,19 @@
 # RubySkeleton
 
+## Setup
+
+Install project dependencies.
+
+```sh
+script/setup.sh
+```
+
+
 ## Usage
 
-This section explains how to use this project.
+This section explains how to use the project.
 
-Run the main entry point program.
+Run the main program.
 
 ```sh
 ruby -I lib bin/rs
@@ -13,31 +22,40 @@ ruby -I lib bin/rs
 
 ## Development
 
-This section explains how to use scripts that are intended to ease the development of this project.
+This section explains how to improve the project.
 
-Install development tools.
-
-```sh
-gem install rspec simplecov simplecov-rcov rspec_junit_formatter metric_fu rubocop roodi flog
-```
-
-Run style checks, metrics and tests.
+Configure Git on Windows before cloning. This avoids problems with Vagrant and VirtualBox.
 
 ```sh
-script/check.sh
-script/measure.sh
-script/test.sh
+git config --global core.autocrlf input
 ```
 
-Build the project like Jenkins.
+Create the development virtual machine on Linux and Darwin.
 
 ```sh
-./build.sh
+script/vagrant/create.sh
 ```
 
+Create the development virtual machine on Windows.
 
-## Important details
+```bat
+script\vagrant\create.bat
+```
 
-* The gem dependency `rspec_junit_formatter` is for formatting rspec output in something JUnit compatible.
-* The gem dependency `simplecov-rcov` is for Jenkins to be able to parse coverage output.
-* The directories `lib/language_example` and `spec/language_example` are for sharing language specific knowledge.
+Run tests.
+
+```sh
+script/test.sh [--help]
+```
+
+Run style check.
+
+```sh
+script/check.sh [--help]
+```
+
+Build project.
+
+```sh
+script/build.sh
+```
