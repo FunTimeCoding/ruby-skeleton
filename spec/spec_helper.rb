@@ -1,10 +1,14 @@
 if ENV['COVERAGE'] == 'on'
   require 'simplecov'
   require 'simplecov-rcov'
-  class SimpleCov::Formatter::MergedFormatter
-    def format(result)
-      SimpleCov::Formatter::HTMLFormatter.new.format(result)
-      SimpleCov::Formatter::RcovFormatter.new.format(result)
+  class SimpleCov
+    class Formatter
+      class MergedFormatter
+        def format(result)
+          SimpleCov::Formatter::HTMLFormatter.new.format(result)
+          SimpleCov::Formatter::RcovFormatter.new.format(result)
+        end
+      end
     end
   end
   SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
