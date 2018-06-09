@@ -15,7 +15,9 @@ if [ "${1}" = --ci-mode ]; then
     CONTINUOUS_INTEGRATION_MODE=true
 fi
 
-MARKDOWN_FILES=$(find . -name '*.md')
+EXCLUDE_FILTER='^.*\/(build|vendor|tmp|\.git|\.vagrant|\.bundle|\.idea)\/.*$'
+
+MARKDOWN_FILES=$(find . -name '*.md' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
 BLACKLIST=""
 DICTIONARY=en_US
 mkdir -p tmp
@@ -46,7 +48,7 @@ for FILE in ${MARKDOWN_FILES}; do
     fi
 done
 
-TEX_FILES=$(find . -name '*.tex')
+TEX_FILES=$(find . -name '*.tex' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
 
 for FILE in ${TEX_FILES}; do
     WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l -t "${FILE}")
@@ -86,8 +88,6 @@ if [ "${SYSTEM}" = Darwin ]; then
 else
     FIND='find'
 fi
-
-EXCLUDE_FILTER='^.*\/(build|tmp|\.git|\.vagrant|\.idea)\/.*$'
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     FILES=$(${FIND} . -name '*.sh' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
