@@ -75,4 +75,4 @@ INITIALS=$(echo "${NAME}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:
 #${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/RubySkeleton/${2}/g" --expression "s/ruby-skeleton/${3}/g" --expression "s/ruby_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
 ${FIND} . -regextype posix-extended -type f -regex "${INCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/RubySkeleton/${2}/g" --expression "s/ruby-skeleton/${3}/g" --expression "s/ruby_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
 # shellcheck disable=SC1117
-${SED} --in-place --expression "s/bin\/ss/bin\/${INITIALS}/g" README.md Dockerfile
+${SED} --in-place --expression "s/bin\/rs/bin\/${INITIALS}/g" README.md Dockerfile "${UNDERSCORE}.gemspec"
