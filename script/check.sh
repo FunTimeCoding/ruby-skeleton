@@ -28,7 +28,7 @@ MARKDOWN_FILES=$(${FIND} . -regextype posix-extended -name '*.md' -and ! -regex 
 BLACKLIST=""
 DICTIONARY=en_US
 mkdir -p tmp
-cat documentation/dictionary/*.dic > tmp/combined.dic
+cat documentation/dictionary/*.dic >tmp/combined.dic
 
 for FILE in ${MARKDOWN_FILES}; do
     WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
@@ -93,7 +93,7 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
 
     for FILE in ${FILES}; do
         FILE_REPLACED=$(echo "${FILE}" | sed 's/\//-/g')
-        shellcheck --format checkstyle "${FILE}" > "build/log/checkstyle-${FILE_REPLACED}.xml" || true
+        shellcheck --format checkstyle "${FILE}" >"build/log/checkstyle-${FILE_REPLACED}.xml" || true
     done
 else
     # shellcheck disable=SC2016
@@ -113,7 +113,7 @@ if [ ! "${EMPTY_FILES}" = "" ]; then
     CONCERN_FOUND=true
 
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-        echo "${EMPTY_FILES}" > build/log/empty-files.txt
+        echo "${EMPTY_FILES}" >build/log/empty-files.txt
     else
         echo
         echo "(WARNING) Empty files:"
@@ -127,7 +127,7 @@ TO_DOS=$(${FIND} . -regextype posix-extended -type f -and ! -regex "${EXCLUDE_FI
 
 if [ ! "${TO_DOS}" = "" ]; then
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-        echo "${TO_DOS}" > build/log/to-dos.txt
+        echo "${TO_DOS}" >build/log/to-dos.txt
     else
         echo
         echo "(NOTICE) To dos:"
@@ -141,7 +141,7 @@ SHELLCHECK_IGNORES=$(${FIND} . -regextype posix-extended -type f -and ! -regex "
 
 if [ ! "${SHELLCHECK_IGNORES}" = "" ]; then
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-        echo "${SHELLCHECK_IGNORES}" > build/log/shellcheck-ignores.txt
+        echo "${SHELLCHECK_IGNORES}" >build/log/shellcheck-ignores.txt
     else
         echo
         echo "(NOTICE) Shellcheck ignores:"
@@ -154,7 +154,7 @@ RETURN_CODE=0
 RUBOCOP_CONCERNS=$(bundle exec rubocop) || RETURN_CODE=$?
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    echo "${RUBOCOP_CONCERNS}" > build/log/rubocop.txt
+    echo "${RUBOCOP_CONCERNS}" >build/log/rubocop.txt
 else
     if [ ! "${RETURN_CODE}" = 0 ]; then
         CONCERN_FOUND=true
@@ -170,7 +170,7 @@ RETURN_CODE=0
 ROODI_CONCERNS=$(bundle exec roodi "lib/**/*.rb") || RETURN_CODE=$?
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    echo "${ROODI_CONCERNS}" > build/log/roodi.txt
+    echo "${ROODI_CONCERNS}" >build/log/roodi.txt
 else
     if [ ! "${RETURN_CODE}" = 0 ]; then
         CONCERN_FOUND=true
@@ -187,7 +187,7 @@ RETURN_CODE=0
 FLOG_CONCERNS=$(${FIND} . -regextype posix-extended -name '*.rb' -and ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'echo ${1}; bundle exec flog ${1}' '_' '{}' \;) || RETURN_CODE=$?
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    echo "${FLOG_CONCERNS}" > build/log/flog.txt
+    echo "${FLOG_CONCERNS}" >build/log/flog.txt
 else
     if [ ! "${RETURN_CODE}" = 0 ]; then
         CONCERN_FOUND=true
