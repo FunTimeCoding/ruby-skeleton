@@ -7,3 +7,4 @@
 /debian/ruby-skeleton.substvars
 /documentation/man/*.1
 /.scannerwork
+/.idea

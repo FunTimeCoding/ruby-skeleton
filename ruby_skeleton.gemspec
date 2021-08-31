@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.homepage = ''
   s.summary = 'TODO: Write a gem summary'
   s.description = 'TODO: Write a gem description'
-  s.rubyforge_project = 'ruby_skeleton'
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split(
