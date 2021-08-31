@@ -1,9 +1,13 @@
 # Simple development container
 
 Pro:
-- no SSH
+- no SSH needed
+- IDE detects Ruby version and installed gems
+- IDE execute works
+- IDE tests work
+- IDE debug works
 
 Con:
-- no working IDE integration
-
-TODO: Check in future RubyMine releases for integration to keep the Ruby environment inside Docker
+- No known IDE debug settings
+- No known IDE coverage settings
+- Installing gems afterwards does not update in the IDE. Rebuild of the image is needed.

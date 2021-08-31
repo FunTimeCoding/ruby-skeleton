@@ -5,7 +5,6 @@ COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN apk add --virtual build-dependencies build-base
 RUN bundle install
-COPY configuration/docker/motd.txt /etc/motd
 
 FROM ruby:2.7.4-alpine AS development-ssh
 RUN apk add --virtual build-dependencies build-base
@@ -13,7 +12,7 @@ COPY . /ruby_skeleton
 WORKDIR /ruby_skeleton
 RUN gem install bundler
 # Install bundle packages system wide. Set by environment variable.
-#RUN bundle config set system true
+RUN bundle config set system true
 # Throw error if Gemfile.lock is out of sync
 #RUN bundle config --global frozen 1
 RUN bundle install

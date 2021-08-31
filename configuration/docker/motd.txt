@@ -1,1 +1,3 @@
 Project location: /ruby_skeleton
+RubyMine configuration:
+    Executable: /usr/local/bin/ruby

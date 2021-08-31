@@ -82,6 +82,7 @@ GEM
       require_all (~> 3.0)
       ruby-progressbar
     rainbow (3.0.0)
+    rake (13.0.6)
     redcard (1.1.0)
     reek (6.0.6)
       kwalify (~> 0.7.0)
@@ -118,6 +119,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.11.0)
       parser (>= 3.0.1.1)
+    ruby-debug-ide (0.7.2)
+      rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
     ruby_parser (3.17.0)
       sexp_processor (~> 4.15, >= 4.15.1)
@@ -146,6 +149,7 @@ DEPENDENCIES
   rspec
   rspec_junit_formatter
   rubocop
+  ruby-debug-ide
   simplecov
   simplecov-rcov
 
