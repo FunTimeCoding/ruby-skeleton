@@ -1,12 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.4.1)
+    activesupport (7.0.4.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     arrayfields (4.9.2)
@@ -24,7 +23,7 @@ GEM
       sexp_processor
     code_metrics (0.1.3)
     coderay (1.1.3)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.2.0)
     diff-lcs (1.4.4)
     docile (1.4.0)
     erubis (2.7.0)
@@ -39,7 +38,7 @@ GEM
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.8)
     hirb (0.7.3)
-    i18n (1.8.10)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     json (2.5.1)
     kwalify (0.7.2)
@@ -66,7 +65,7 @@ GEM
       reek (>= 5.4.0)
       roodi (~> 5.0.0)
     metric_fu-Saikuro (1.1.3)
-    minitest (5.14.4)
+    minitest (5.17.0)
     multi_json (1.15.0)
     parallel (1.20.1)
     parser (3.0.2.0)
@@ -133,10 +132,9 @@ GEM
     simplecov-rcov (0.2.3)
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.3)
-    tzinfo (2.0.4)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
-    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
